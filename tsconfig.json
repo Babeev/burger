@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "module": "commonjs",
+      "sourceMap": true,
+      "jsx": "react",
+      "noImplicitAny": false,
+      "strictNullChecks": true,
+      "plugins": [
+        {
+          "name": "typescript-plugin-css-modules",
+          "options": {
+            "classnameTransform": "dashes",
+            "customMatcher": "\\.m\\.css$",
+            "customRenderer": "./myRenderer.js",
+            "dotenvOptions": {},
+            "postCssOptions": {},
+            "rendererOptions": {}
+          }
+        }
+      ]
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
