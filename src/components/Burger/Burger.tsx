@@ -2,17 +2,25 @@ import React from 'react';
 import classes from './Burger.css';
 import BurgerIngridient from './BurgerIngridient/BurgerIngridient';
 
-export default props => {
-  const transformIngridients = Object.keys(props.ingridients)
-  .map(igKey => {
-    return [...Array(props.ingridients[igKey])]
-    .map((_, i) => <BurgerIngridient key={igKey + i} type={igKey} />)
-  });
+interface Props {
+  ingridients: object;
+}
+
+export default (props: Props) => {
+  const emptyIngridients = <p>Пожалуйста, добавьте ингридиенты</p>;
+  let transformIngridients:any = [];
+  
+  Object.keys(props.ingridients).forEach(ing => {
+    let numberIngridients = props.ingridients[ing];
+    for(let i = 0; i < numberIngridients; i++) {
+      transformIngridients.push(<BurgerIngridient key={ing + i} type={ing} />);
+    }
+  })
 
   return (
     <div className={classes.Burger}>
       <BurgerIngridient type="bread-top"/>
-      {transformIngridients}
+      {transformIngridients.length ? transformIngridients : emptyIngridients}
       <BurgerIngridient type="bread-bottom"/>
     </div>
   );
